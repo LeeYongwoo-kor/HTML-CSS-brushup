@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>TEST</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+      function handleClick() {
+        alert("HI, I'm from KOREA");
+      }
+
+      function handleMath() {
+        alert("HI, I'm from MATH Country");
+        console.log(1 + 2 + 3 + 4);
+      }
+    </script>
+  </head>
+  <body>
+    <label><input name="chk" type="checkbox" />CHECKBOX1</label>
+    <label><input name="chk" type="checkbox" />CHECKBOX2</label>
+    <label><input name="chk" type="checkbox" />CHECKBOX3</label>
+    <label><input type="checkbox" onclick="handleMath()" />CHECKBOX4</label>
+
+    <script>
+      const cb = document.querySelectorAll("input[name='chk']");
+
+      if (!Array.prototype.forEach) {
+        Array.prototype.forEach = function (fn, scope) {
+          for (var i = 0, len = this.length; i < len; ++i) {
+            fn.call(scope, this[i], i, this);
+          }
+        };
+      }
+      for (let i = 0; i < cb.length; i++) {
+        cb[i].addEventListener("click", function (e) {
+          this.checked = !this.checked;
+          handleClick();
+          this.checked = !this.checked;
+        });
+      }
+      /*
+      cb.forEach((item) => {
+        item.addEventListener("change", (e) => {
+          // const checked = e.target.checked;
+          // console.log(checked);
+          // e.target.checked = checked && handleClick();
+          handleClick();
+        });
+      });
+      */
+    </script>
+  </body>
+</html>
